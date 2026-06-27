@@ -1,0 +1,218 @@
+[
+  {
+    "pk": "80873d95-fc44-4393-a39a-617bd8725d20",
+    "url": "https://grand-challenge.org/algorithms/track-2-baseline-hover-next-nnu-net/jobs/80873d95-fc44-4393-a39a-617bd8725d20/",
+    "inputs": [
+      {
+        "pk": 2539651,
+        "file": null,
+        "image": {
+          "pk": "532ea0ef-d54c-4f75-921a-4b4ea0833f1a",
+          "name": "preliminary_test_set_primary_roi_004.tif"
+        },
+        "value": null,
+        "interface": {
+          "pk": 512,
+          "kind": "Image",
+          "slug": "melanoma-whole-slide-image",
+          "title": "Melanoma whole-slide image",
+          "super_kind": "Image",
+          "description": "Whole-slide tissue image from patients with metastatic melanoma",
+          "default_value": null,
+          "look_up_table": null,
+          "relative_path": "images/melanoma-wsi",
+          "overlay_segments": []
+        }
+      }
+    ],
+    "status": "Succeeded",
+    "api_url": "https://grand-challenge.org/api/v1/algorithms/jobs/80873d95-fc44-4393-a39a-617bd8725d20/",
+    "outputs": [
+      {
+        "pk": 2562881,
+        "file": "https://grand-challenge.org/media/components/componentinterfacevalue/1b/41/2562881/melanoma-10-class-nuclei-segmentation.json",
+        "image": null,
+        "value": null,
+        "interface": {
+          "pk": 514,
+          "kind": "Multiple polygons",
+          "slug": "melanoma-10-class-nuclei-segmentation",
+          "title": "Melanoma 10-class nuclei segmentation",
+          "super_kind": "File",
+          "description": "Segmentation of 10 nuclei classes in melanoma histopathology images. Polygons with names: nuclei_tumor, nuclei_apoptosis, nuclei_lymphocyte, nuclei_endothelium, nuclei_plasma_cell, nuclei_stroma, nuclei_histiocyte, nuclei_melanophage, nuclei_neutrophil, nuclei_epithelium",
+          "default_value": null,
+          "look_up_table": null,
+          "relative_path": "melanoma-10-class-nuclei-segmentation.json",
+          "overlay_segments": []
+        }
+      },
+      {
+        "pk": 2562882,
+        "file": null,
+        "image": {
+          "pk": "b7624ea3-e18e-493d-ad7c-7db0390ed998",
+          "name": "532ea0ef-d54c-4f75-921a-4b4ea0833f1a.tif"
+        },
+        "value": null,
+        "interface": {
+          "pk": 525,
+          "kind": "Segmentation",
+          "slug": "melanoma-tissue-mask-segmentation",
+          "title": "Melanoma-tissue mask segmentation",
+          "super_kind": "Image",
+          "description": "Mask of melanoma tissue with segments: 'Background': 0, 'Stroma': 1, 'Blood Vessel': 2, 'Tumor': 3, 'Epidermis': 4, and 'Necrosis': 5",
+          "default_value": null,
+          "look_up_table": null,
+          "relative_path": "images/melanoma-tissue-mask-segmentation",
+          "overlay_segments": [
+            {
+              "name": "Background",
+              "visible": false,
+              "voxel_value": 0
+            },
+            {
+              "name": "Stroma",
+              "visible": true,
+              "voxel_value": 1
+            },
+            {
+              "name": "Blood Vessel",
+              "visible": true,
+              "voxel_value": 2
+            },
+            {
+              "name": "Tumor",
+              "visible": true,
+              "voxel_value": 3
+            },
+            {
+              "name": "Epidermis",
+              "visible": true,
+              "voxel_value": 4
+            },
+            {
+              "name": "Necrosis",
+              "visible": true,
+              "voxel_value": 5
+            }
+          ]
+        }
+      }
+    ],
+    "started_at": "2024-09-30T14:11:40.477377Z",
+    "completed_at": "2024-09-30T14:15:00.262377Z",
+    "view_content": {},
+    "algorithm_image": "Algorithm Image b06f2364 (SHA256: 0715d5ea, comment: Similar to baseline for \u2026)",
+    "hanging_protocol": null,
+    "rendered_result_text": "",
+    "optional_hanging_protocols": []
+  },
+  {
+    "pk": "d112c34d-b7ae-425c-b9d4-8caa0890b1de",
+    "url": "https://grand-challenge.org/algorithms/track-2-baseline-hover-next-nnu-net/jobs/d112c34d-b7ae-425c-b9d4-8caa0890b1de/",
+    "inputs": [
+      {
+        "pk": 2539652,
+        "file": null,
+        "image": {
+          "pk": "a6167f36-f189-4a5a-a6e6-0d43d0191ec8",
+          "name": "preliminary_test_set_primary_roi_005.tif"
+        },
+        "value": null,
+        "interface": {
+          "pk": 512,
+          "kind": "Image",
+          "slug": "melanoma-whole-slide-image",
+          "title": "Melanoma whole-slide image",
+          "super_kind": "Image",
+          "description": "Whole-slide tissue image from patients with metastatic melanoma",
+          "default_value": null,
+          "look_up_table": null,
+          "relative_path": "images/melanoma-wsi",
+          "overlay_segments": []
+        }
+      }
+    ],
+    "status": "Succeeded",
+    "api_url": "https://grand-challenge.org/api/v1/algorithms/jobs/d112c34d-b7ae-425c-b9d4-8caa0890b1de/",
+    "outputs": [
+      {
+        "pk": 2562878,
+        "file": "https://grand-challenge.org/media/components/componentinterfacevalue/1b/3e/2562878/melanoma-10-class-nuclei-segmentation.json",
+        "image": null,
+        "value": null,
+        "interface": {
+          "pk": 514,
+          "kind": "Multiple polygons",
+          "slug": "melanoma-10-class-nuclei-segmentation",
+          "title": "Melanoma 10-class nuclei segmentation",
+          "super_kind": "File",
+          "description": "Segmentation of 10 nuclei classes in melanoma histopathology images. Polygons with names: nuclei_tumor, nuclei_apoptosis, nuclei_lymphocyte, nuclei_endothelium, nuclei_plasma_cell, nuclei_stroma, nuclei_histiocyte, nuclei_melanophage, nuclei_neutrophil, nuclei_epithelium",
+          "default_value": null,
+          "look_up_table": null,
+          "relative_path": "melanoma-10-class-nuclei-segmentation.json",
+          "overlay_segments": []
+        }
+      },
+      {
+        "pk": 2562880,
+        "file": null,
+        "image": {
+          "pk": "625ab779-3b7a-449e-b6a9-8147177f6e4b",
+          "name": "a6167f36-f189-4a5a-a6e6-0d43d0191ec8.tif"
+        },
+        "value": null,
+        "interface": {
+          "pk": 525,
+          "kind": "Segmentation",
+          "slug": "melanoma-tissue-mask-segmentation",
+          "title": "Melanoma-tissue mask segmentation",
+          "super_kind": "Image",
+          "description": "Mask of melanoma tissue with segments: 'Background': 0, 'Stroma': 1, 'Blood Vessel': 2, 'Tumor': 3, 'Epidermis': 4, and 'Necrosis': 5",
+          "default_value": null,
+          "look_up_table": null,
+          "relative_path": "images/melanoma-tissue-mask-segmentation",
+          "overlay_segments": [
+            {
+              "name": "Background",
+              "visible": false,
+              "voxel_value": 0
+            },
+            {
+              "name": "Stroma",
+              "visible": true,
+              "voxel_value": 1
+            },
+            {
+              "name": "Blood Vessel",
+              "visible": true,
+              "voxel_value": 2
+            },
+            {
+              "name": "Tumor",
+              "visible": true,
+              "voxel_value": 3
+            },
+            {
+              "name": "Epidermis",
+              "visible": true,
+              "voxel_value": 4
+            },
+            {
+              "name": "Necrosis",
+              "visible": true,
+              "voxel_value": 5
+            }
+          ]
+        }
+      }
+    ],
+    "started_at": "2024-09-30T14:11:48.551199Z",
+    "completed_at": "2024-09-30T14:14:53.214199Z",
+    "view_content": {},
+    "algorithm_image": "Algorithm Image b06f2364 (SHA256: 0715d5ea, comment: Similar to baseline for \u2026)",
+    "hanging_protocol": null,
+    "rendered_result_text": "",
+    "optional_hanging_protocols": []
+  }
+]

@@ -1,0 +1,150 @@
+# ── PUMA_nuclei V11_reg001 config ────────────────────────────────────────────
+# Experiment: EXP-REG-001 — weight_decay sweep [0.05, 0.10, 0.20]
+# Base: configs/PUMA_nuclei_V11.yaml (ARCH-002: efficientnet_v2_m, 60ep, val/f1=0.7197)
+# Changes from V11:
+#   - optimizer.weight_decay: sweep([0.05, 0.10, 0.20])  (was: 0.01)
+# Motivation: ARCH-002 train/loss=0.154 vs val/loss=1.034 (gap=0.880) at ep59.
+#   weight_decay=0.01 has been locked since EXP-LR-001 and never varied.
+#   Increasing L2 penalty for a 54M-param model should close the train/val gap
+#   and push val/f1 beyond the 0.7197 ceiling.
+# Gate: any wd value achieves val/f1 > 0.7197 at final epoch.
+#       Fail: all values <= 0.7197 → L2 penalty is not the lever.
+# Budget: 3 runs × 60 epochs
+# Run with: python training/PUMA_nuclei_training.py --config configs/PUMA_nuclei_V11_reg001.yaml --sweep
+# ─────────────────────────────────────────────────────────────────────────────
+
+project:
+  name: PUMA_nuclei_classification
+  task_type: classification
+  output_dir: outputs/PUMA_nuclei_classification
+  seed: 42
+
+# ── Data ──────────────────────────────────────────────────────────────────────
+
+data:
+  dataset_name: PUMA_nuclei
+  batch_size: 64
+  num_workers: 4
+  image_size: 96
+
+# ── Model ─────────────────────────────────────────────────────────────────────
+
+model:
+  backbone_name: efficientnet_v2_m
+  num_classes: 3
+  pretrained: true
+  loss: CE
+  class_weights: [1.0, 3.5, 4.0]
+
+# ── Optimizer ─────────────────────────────────────────────────────────────────
+
+optimizer:
+  name: adamw
+  lr: 1.0e-5
+  weight_decay: 0.01                      # overridden per-run by sweep section below
+
+# ── Scheduler ─────────────────────────────────────────────────────────────────
+
+scheduler:
+  name: cosine
+  eta_min: 1.0e-6
+
+# ── Trainer ───────────────────────────────────────────────────────────────────
+
+trainer:
+  max_epochs: 60
+  accelerator: cuda
+  devices: 1
+  precision: "16-mixed"
+  log_every_n_steps: 10
+  monitor: val/f1
+  mode: max
+
+# ── Metrics ───────────────────────────────────────────────────────────────────
+
+metrics: [accuracy, f1, auc]
+
+# ── Preprocessing ─────────────────────────────────────────────────────────────
+
+preprocessing:
+  normalize: imagenet
+
+# ── Augmentation (locked) ─────────────────────────────────────────────────────
+
+transforms:
+  randaugment:
+    num_ops: 5
+    magnitude: 9
+
+operations:
+  geometric:
+  - _hflip
+  - _vflip
+  - _rotate
+  - _rot90k
+  - _elastic
+
+  colour:
+  - _brightness
+  - _contrast
+  - _saturation
+  - _hue
+  - _sharpness
+  - _gaussian_blur
+  - _gaussian_noise
+
+  min_rotate: 0.0
+  max_rotate: 25.0
+  min_translate: 0.0
+  max_translate: 0.08
+  min_shear: 0.0
+  max_shear: 10.0
+  min_zoom: 0.85
+  max_zoom: 1.15
+  min_perspective: 0.0
+  max_perspective: 0.20
+  min_elastic_alpha: 0.0
+  max_elastic_alpha: 20.0
+  elastic_sigma: 6.0
+  min_crop_scale: 0.6
+  max_crop_scale: 1.0
+  min_erase: 0.0
+  max_erase: 0.15
+  min_brightness: 0.8
+  max_brightness: 1.4
+  min_contrast: 0.8
+  max_contrast: 1.4
+  min_saturation: 0.8
+  max_saturation: 1.4
+  min_hue: 0.0
+  max_hue: 0.08
+  min_sharpness: 0.8
+  max_sharpness: 2.0
+  min_solarize: 0.6
+  max_solarize: 1.0
+  min_posterize: 5
+  max_posterize: 8
+  min_blur_sigma: 0.0
+  max_blur_sigma: 1.0
+  min_noise_std: 0.0
+  max_noise_std: 0.05
+
+# ── Logger ────────────────────────────────────────────────────────────────────
+
+logger:
+  name: wandb
+  project: PUMA_nuclei_classification
+
+# ── Sweep ─────────────────────────────────────────────────────────────────────
+
+sweep:
+  method: grid
+  metric:
+    name: val/f1
+    goal: maximize
+  parameters:
+    optimizer.weight_decay:
+      values: [0.05, 0.10, 0.20]
+  # 3 runs total — baseline (wd=0.01) is ARCH-002 (run ifktcu0h, val/f1=0.7197)
+  # Winner should not sit on a boundary; if best is 0.20, extend sweep upward.
+  # If all values <= 0.7197, L2 penalty is not the lever — try label smoothing.
