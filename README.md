@@ -7,9 +7,9 @@
 ## Model Checkpoint
 
 The trained model checkpoint is not stored in this repository.
-Download `best_model.ckpt` and place it at `checkpoints/best_model.ckpt` before building:
+Place `best_model.ckpt` at `checkpoints/best_model.ckpt` before building.
 
-**[Download from Google Drive](https://drive.google.com/drive/folders/11KyK7zAoLX4vSaaisw4nlKL0ZsEo2rwb?usp=sharing)**
+To request access to the checkpoint, contact: **eugenia.moris@arionkoder.com**
 
 ## Build & Run
 
